@@ -2,10 +2,10 @@
 
 /**
  * egg-gridfs default config
- * @member Config#gridfs
+ * @member Config#mongo
  * @property {String} SOME_KEY - some description
  */
-exports.gridfs = {
+exports.mongo = {
   client: {
     // uri: 'mongodb://username:password@127.0.0.1:12017?authSource=admin',
     uri: 'mongodb://127.0.0.1:12017',

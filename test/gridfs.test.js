@@ -22,8 +22,13 @@ describe('test/gridfs.test.js', () => {
   });
 
   it('should not be undefined', async () => {
-    const gridfs = app.gridfs;
+    // const gridfs = app.gridfs;
+    const gridfs = app.mongo.gridfs;
+    const db = app.mongo.db;
     console.log(gridfs);
+    console.log(db);
+
+    console.log(app.mongo.ObjectID);
   });
 
 });

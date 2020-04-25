@@ -44,7 +44,7 @@ exports.gridfs = {
 
 ```js
 // {app_root}/config/config.default.js
-exports.gridfs = {
+exports.mongo = {
   client: {
     uri: 'mongodb://127.0.0.1:12017',
     dbName: 'dataDb',
@@ -78,10 +78,10 @@ see [config/config.default.js](config/config.default.js) for more detail.
 
 ```js
 const fs = require('fs');
-const { ObjectID } = require('mongodb');
 
+const ObjectID = app.mongo.ObjectID
 // get GridFS handle for database 'fileDb'(config)
-const gridfs = this.app.gridfs;
+const gridfs = this.app.mongo.gridfs;
 const id = new ObjectID();
 
 // upload file to database 'fileDb'(config).
@@ -104,6 +104,20 @@ gridfs.openDownloadStream(new ObjectID(id))
     console.log('done!');
     process.exit(0);
   });
+```
+
+- normally access MongoDB
+> More Db Api See [Db](http://mongodb.github.io/node-mongodb-native/3.6/api/Db.html)
+
+```js
+// select database 'daName'(config)
+const db = app.mongo.db;
+// select collection 
+const col = db.collection('test_collection');
+// insert one document
+await col.insertOne({ name: 'test' });
+// find data, format to list
+const list = await col.find({}).toArray();
 ```
 
 ## Questions & Suggestions
