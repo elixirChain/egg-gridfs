@@ -20,4 +20,10 @@ describe('test/gridfs.test.js', () => {
       .expect('hi, gridfs')
       .expect(200);
   });
+
+  it('should not be undefined', async () => {
+    const gridfs = app.gridfs;
+    console.log(gridfs);
+  });
+
 });

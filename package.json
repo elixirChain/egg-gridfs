@@ -1,16 +1,20 @@
 {
   "name": "egg-gridfs",
   "version": "1.0.0",
-  "description": "",
+  "description": "egg plugin for MongoDB GridFS.",
   "eggPlugin": {
     "name": "gridfs"
   },
   "keywords": [
     "egg",
     "eggPlugin",
-    "egg-plugin"
+    "egg-plugin",
+    "GridFs",
+    "egg-gridfs"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "mongodb": "^3.5.6"
+  },
   "devDependencies": {
     "autod": "^3.0.1",
     "autod-egg": "^1.1.0",
@@ -34,22 +38,21 @@
     "autod": "autod"
   },
   "files": [
-    "app.js",
-    "agent.js",
     "config",
-    "app"
+    "app.js",
+    "lib"
   ],
   "ci": {
     "version": "8, 10"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eggjs/egg-gridfs.git"
+    "url": "git+https://github.com/elixirChain/egg-gridfs.git"
   },
   "bugs": {
-    "url": "https://github.com/eggjs/egg/issues"
+    "url": "https://github.com/elixirChain/egg-gridfs/issues"
   },
-  "homepage": "https://github.com/eggjs/egg-gridfs#readme",
-  "author": "senique",
+  "homepage": "https://github.com/elixirChain/egg-gridfs#readme",
+  "author": "",
   "license": "MIT"
 }

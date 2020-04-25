@@ -45,6 +45,27 @@ exports.gridfs = {
 ```js
 // {app_root}/config/config.default.js
 exports.gridfs = {
+  client: {
+    uri: 'mongodb://127.0.0.1:12017',
+    dbName: 'dataDb',
+    options: {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      authSource: 'admin',
+      auth: {
+        user: 'username',
+        password: 'password',
+      },
+      // poolSize: 2,
+      // ssl: true,
+      // replicaSet: 'xxx',
+    },
+    fileDbName: 'fileDb',
+    // fileOptions: {
+    //   bucketName: 'test',
+    //   chunkSizeBytes: 261120,
+    // },
+  },
 };
 ```
 
@@ -52,11 +73,42 @@ see [config/config.default.js](config/config.default.js) for more detail.
 
 ## Example
 
-<!-- example here -->
+- use MongoDB GridFS
+> More GridFS Api See [GridFSBucket](http://mongodb.github.io/node-mongodb-native/3.6/api/GridFSBucket.html)
+
+```js
+const fs = require('fs');
+const { ObjectID } = require('mongodb');
+
+// get GridFS handle for database 'fileDb'(config)
+const gridfs = this.app.gridfs;
+const id = new ObjectID();
+
+// upload file to database 'fileDb'(config).
+fs.createReadStream('./upload.txt')
+  .pipe(gridfs.openUploadStreamWithId(id, fileName))
+  .on('error', function(error) {
+    reject(error);
+  })
+  .on('finish', function() {
+    resolve(id);
+  });
+
+// download file from database 'fileDb'(config).
+gridfs.openDownloadStream(new ObjectID(id))
+  .pipe(fs.createWriteStream('./download.txt'))
+  .on('error', function(error) {
+    assert.ifError(error);
+  })
+  .on('end', function() {
+    console.log('done!');
+    process.exit(0);
+  });
+```
 
 ## Questions & Suggestions
 
-Please open an issue [here](https://github.com/eggjs/egg/issues).
+Please open an issue [here](https://github.com/elixirChain/egg-gridfs/issues).
 
 ## License
 
