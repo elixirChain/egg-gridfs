@@ -1,6 +1,7 @@
 'use strict';
 
 const mock = require('egg-mock');
+const assert = require('assert');
 
 describe('test/gridfs.test.js', () => {
   let app;
@@ -21,14 +22,17 @@ describe('test/gridfs.test.js', () => {
       .expect(200);
   });
 
-  it('should not be undefined', async () => {
-    // const gridfs = app.gridfs;
+  it('should gridfs === GridFSBucket object', () => {
     const gridfs = app.mongo.gridfs;
+    assert(gridfs.constructor.name === 'GridFSBucket', 'get gridfs object error');
+  });
+  it('should db === Db object', () => {
     const db = app.mongo.db;
-    console.log(gridfs);
-    console.log(db);
-
-    console.log(app.mongo.ObjectID);
+    assert(db.constructor.name === 'Db', 'get db object error');
+  });
+  it('should ObjectID === Function object', () => {
+    const ObjectID = app.mongo.ObjectID;
+    assert(ObjectID.constructor.name === 'Function', 'get ObjectID object error');
   });
 
 });
