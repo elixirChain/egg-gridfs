@@ -2,12 +2,14 @@
 
 /**
  * egg-gridfs default config
+ * @see http://mongodb.github.io/node-mongodb-native/3.6/tutorials/connect/
  * @member Config#mongo
  * @property {String} SOME_KEY - some description
  */
 exports.mongo = {
   client: {
     // uri: 'mongodb://username:password@127.0.0.1:12017?authSource=admin',
+    // uri: 'mongodb://127.0.0.1:12017,127.0.0.1:12018',
     uri: 'mongodb://127.0.0.1:12017',
     dbName: 'dataDb',
     options: {
