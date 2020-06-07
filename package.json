@@ -1,6 +1,6 @@
 {
   "name": "egg-gridfs",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "egg plugin for MongoDB GridFS.",
   "eggPlugin": {
     "name": "gridfs"
@@ -13,7 +13,8 @@
     "egg-gridfs"
   ],
   "dependencies": {
-    "mongodb": "^3.5.6"
+    "mongodb": "^3.5.6",
+    "readable-stream-clone": "^0.0.7"
   },
   "devDependencies": {
     "autod": "^3.0.1",

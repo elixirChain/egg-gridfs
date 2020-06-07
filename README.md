@@ -77,18 +77,16 @@ see [config/config.default.js](config/config.default.js) for more detail.
 > More GridFS Api See [GridFSBucket](http://mongodb.github.io/node-mongodb-native/3.6/api/GridFSBucket.html)
 
 ```js
-const fs = require('fs');
+  // upload file to database 'fileDb'(config).
+  // or use uploadOnly for keeping only one copy of file(too slow for big file).
+  async upload(fileStream) {
+    return await this.app.mongo.upload(fileStream);
+  }
 
-// upload file to database 'fileDb'(config).
-// or use uploadOnly for keeping only one copy of file(too slow for big file).
-async upload(fileStream) {
-  return await this.app.mongo.upload(fileStream);
-}
-
-// download file from database 'fileDb'(config).
-async download(id) {
-  return await this.app.mongo.download(id);
-}
+  // download file from database 'fileDb'(config).
+  async download(id) {
+    return await this.app.mongo.download(id);
+  }
 ```
 
 - use MongoDB GridFS with origin GridFSBucket
@@ -97,9 +95,9 @@ async download(id) {
 ```js
 const fs = require('fs');
 
-const ObjectID = this.app.mongo.ObjectID
 // get GridFS handle for database 'fileDb'(config)
 const gridfs = this.app.mongo.gridfs;
+const ObjectID = this.app.mongo.ObjectID
 const id = new ObjectID();
 
 // upload file to database 'fileDb'(config).
